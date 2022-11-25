@@ -1,5 +1,4 @@
 # below imports the routes
-from app.routes import home
 from app.routes import home, dashboard
 
 # below imports the flask package
