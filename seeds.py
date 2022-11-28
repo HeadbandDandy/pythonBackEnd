@@ -9,3 +9,19 @@ from app.db import Session, Base, engine
 Base.metadata.drop_all(engine)
 Base.metadata.create_all(engine)
 
+# dummy data for testing below 
+
+# Session class establishes a temporary connection
+db = Session()
+
+db.add_all([
+      User(username='googie21', email='nwestnedge0@cbc.ca', password='password123'),
+  User(username='jwilldog13', email='rmebes1@sogou.com', password='password123'),
+  User(username='sambo12', email='cstoneman2@last.fm', password='password123'),
+  User(username='johnnygirl14', email='ihellier3@google.jp', password='password123'),
+  User(username='iamsenorfrog4', email='gmidgley4@weather.com', password='password123')
+])
+
+db.commit()
+
+db.close()
