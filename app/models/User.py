@@ -3,12 +3,14 @@ from app.db import Base
 from sqlalchemy import Column, Integer, String
 # below allows for validation of user data before acceptance
 from sqlalchemy.orm import validates
+# below contains encryption import
+import bcrypt
+salt = bcrypt.gensalt()
 
 
 
 
 # class for user placed below
-
 class User(Base):
     __tablename__ = "users"
     id = Column(Integer, primary_key=True)
@@ -28,6 +30,5 @@ class User(Base):
     @validates('password')
     def validate_password(self, key, password):
         assert len(password) > 5
-
-        return password
-        
+        # below encrypts password
+        return bcrypt.hashpw(password.encode('utf-8'), salt)
