@@ -19,7 +19,8 @@ db.add_all([
   User(username='jwilldog13', email='rmebes1@sogou.com', password='password123'),
   User(username='sambo12', email='cstoneman2@last.fm', password='password123'),
   User(username='johnnygirl14', email='ihellier3@google.jp', password='password123'),
-  User(username='iamsenorfrog4', email='gmidgley4@weather.com', password='password123')
+  User(username='iamsenorfrog4', email='gmidgley4@weather.com', password='password123'),
+  User(username='cheeseanddope', email='notvalid', password='cheese12345')
 ])
 
 db.commit()
