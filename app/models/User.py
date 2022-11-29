@@ -23,4 +23,11 @@ class User(Base):
 
         return email
 
+# below validates for passwords over the length of 5 characters
 
+    @validates('password')
+    def validate_password(self, key, password):
+        assert len(password) > 5
+
+        return password
+        
