@@ -1,5 +1,7 @@
-# below imports the routes
+# below imports the routes as well as databse
 from app.routes import home, dashboard
+from app.db import init_db
+
 
 # below imports the flask package
 from flask import Flask
@@ -20,5 +22,7 @@ def create_app(test_config=None):
   # below registers the "home, dashboard routes" blueprint 
   app.register_blueprint(home)
   app.register_blueprint(dashboard)
+
+  init_db()
   
   return app
