@@ -1,7 +1,7 @@
 # This file uses Base class with engine connection to drop all existing tables
 # Secondly this file will create any file that Base mappped
 
-from app.models import User, Post
+from app.models import User, Post, Comment
 from app.db import Session, Base, engine
 
 
@@ -33,6 +33,18 @@ db.add_all([
   Post(title='Donec diam neque, vestibulum eget, vulputate ut, ultrices vel, augue', post_url='https://europa.eu/parturient/montes/nascetur/ridiculus/mus/etiam/vel.aspx', user_id=2),
   Post(title='Nunc purus', post_url='http://desdev.cn/enim/blandit/mi.jpg', user_id=3),
   Post(title='Pellentesque eget nunc', post_url='http://google.ca/nam/nulla/integer.aspx', user_id=4)
+])
+
+db.commit()
+
+
+# below are to test comments in SQL
+db.add_all([
+  Comment(comment_text='nahhhhhhhhh.', user_id=1, post_id=2),
+  Comment(comment_text='yaahhhhaahahahahahahahahaha.', user_id=1, post_id=3),
+  Comment(comment_text='boooooooooogggggeeeeerrrrrsssssss', user_id=2, post_id=1),
+  Comment(comment_text='eeeeeeeeeeeeeeeeeeeeeeee', user_id=2, post_id=3),
+  Comment(comment_text='In hadgafghjdbfa agdhaf dha dhafjl;we dhaj', user_id=3, post_id=3)
 ])
 
 db.commit()
