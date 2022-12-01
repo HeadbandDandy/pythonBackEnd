@@ -2,6 +2,7 @@
 
 from datetime import datetime
 from email.policy import default
+from tkinter import CASCADE
 from app.db import Base
 from sqlalchemy import Column, Integer, String, ForeignKey, DateTime
 from sqlalchemy.orm import relationship
@@ -17,3 +18,5 @@ class Post(Base):
     user_id = Column(Integer, ForeignKey('users.id'))
     created_at = Column(DateTime, default=datetime.now)
     updated_at = Column(DateTime, default=datetime.now, onupdate=datetime.now)
+    comments = relationship('Comment', CASCADE='all, delete')
+
