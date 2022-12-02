@@ -26,6 +26,20 @@ def get_db():
     # stores database connection in application context
     g.db = Session()
 
-  return g.db
+    return g.db
+
+
+# closes the database
+# pop method will remove db from global object
+
+def close_db(e=None):
+    db = g.pop('db', None)
+
+    if db is not None:
+        db.close()
+
+
+
+
 
 
