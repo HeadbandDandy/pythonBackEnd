@@ -17,8 +17,9 @@ Base = declarative_base()
 # below is where Flask will be set up
 
 # initializes database
-def init_db():
+def init_db(app):
     Base.metadata.create_all(engine)
+    app.teardown_appcontext(close_db)
 
 # gets the database
 def get_db():
