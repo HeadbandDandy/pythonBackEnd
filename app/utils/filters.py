@@ -15,4 +15,17 @@ def format_url(url):
 
 
 # Test for above function
-print(format_url('http://google.com/test/'))
+# print(format_url('http://google.com/test/'))
+
+
+# below contains function to format plural words
+def format_plural_words(amount, word):
+    if amount != 1:
+        return word + 's'
+
+    return word
+
+# below tests for above function
+print(format_plural_words(2, 'cat'))
+print(format_plural_words(1, 'dog'))
+print(format_plural_words(5, 'elephant'))
