@@ -6,7 +6,7 @@ def format_date(date):
     return date.strftime('%m/%d/%y')
 
 from datetime import datetime 
-print(format_date(datetime.now()))
+# print(format_date(datetime.now()))
 
 # below contains function to format and filter URL
 # below removes extra information from url leaving only domain name
@@ -26,6 +26,6 @@ def format_plural_words(amount, word):
     return word
 
 # below tests for above function
-print(format_plural_words(2, 'cat'))
-print(format_plural_words(1, 'dog'))
-print(format_plural_words(5, 'elephant'))
+# print(format_plural_words(2, 'cat'))
+# print(format_plural_words(1, 'dog'))
+# print(format_plural_words(5, 'elephant'))
