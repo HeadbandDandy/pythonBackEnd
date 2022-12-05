@@ -1,8 +1,7 @@
 # below imports the routes as well as databse
 from app.routes import home, dashboard
 from app.db import init_db
-from app.utils import filters 
-
+from app.utils import filters
 
 # below imports the flask package
 from flask import Flask
