@@ -13,16 +13,18 @@ def signup():
   data = request.get_json()
   db = get_db()
 
-  # Below creates a new user
-  newUser = User(
-    username = data['username'],
-    email = data['email'],
-    password = data['password']
-  )
-
-  # below saves above data in database
-  db.add(newUser)
-  db.commit()
+  try:
+    # attempts to create a new User
+    newUser = User(
+      username = data['username'],
+      email = data['email'],
+      password = data['password']
+    )
+# below adds data to database 
+    db.add(newUser)
+    db.commit()
+  except:
+    # Returns failed message to user
+    return jsonify(message = 'Signup failed'), 500
 
   return jsonify(id = newUser.id)
-  
