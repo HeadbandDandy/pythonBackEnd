@@ -133,4 +133,13 @@ def create():
     return jsonify(message = 'Post failed'), 500
 
   return jsonify(id = newPost.id)
+
+# below contains the route to update a POST
+@bp.route('/posts/<id>', methods=['PUT'])
+def update(id):
+  data = request.get_json()
+  db = get_db()
+  post = db.query(Post).filter(Post.id == id).one()
+  post.title = data['title']
+  db.commit()
         
