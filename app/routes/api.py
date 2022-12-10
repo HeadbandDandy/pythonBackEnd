@@ -36,3 +36,9 @@ def signup():
     return jsonify(message = 'Signup failed'), 500
 
   return jsonify(id = newUser.id)
+
+@bp.route('/users/logout', methods=['POST'])
+def logout():
+    # below removes session varaibles
+    session.clear()
+    return '', 204
