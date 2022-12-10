@@ -2,7 +2,7 @@
 import email
 import json
 import sys
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, session
 from app.models import User
 from app.db import get_db
 
@@ -27,6 +27,12 @@ def signup():
   except:
     # Returns failed message to user
     print(sys.exe_info()[0])
+
+    db.rollback()
+        # below is where session object is placed
+    session.clear()
+    session['user_id'] = newUser.id
+    session['loggedIn'] = True
     return jsonify(message = 'Signup failed'), 500
 
   return jsonify(id = newUser.id)
