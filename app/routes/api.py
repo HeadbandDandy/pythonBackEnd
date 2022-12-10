@@ -53,6 +53,7 @@ def login():
             user = db.query(User).filter(User.email == data ['email']).one()
     except:
          print(sys.exc_info()[0])
+    if user.verify_password(data['password']) == False:
+            return jsonify(message = 'Incorrect Credntials'), 400
 
-         return jsonify(message = 'Incorrect Credntials'), 400
 
