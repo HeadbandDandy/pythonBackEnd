@@ -1,6 +1,7 @@
 # Below contains APi endpoints
 import email
 import json
+import sys
 from flask import Blueprint, request, jsonify
 from app.models import User
 from app.db import get_db
@@ -25,6 +26,7 @@ def signup():
     db.commit()
   except:
     # Returns failed message to user
+    print(sys.exe_info()[0])
     return jsonify(message = 'Signup failed'), 500
 
   return jsonify(id = newUser.id)
