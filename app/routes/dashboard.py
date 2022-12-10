@@ -8,6 +8,13 @@ bp = Blueprint('dashboard', __name__, url_prefix='/dashboard')
 
 @bp.route('/')
 def dash():
+    db = get_db()
+    posts = (
+        db.query(Post)
+        .filter(Post.user_id == session.get('user_id'))
+        .order_by(Post.created_at.desc())
+        .all()
+    )
     return render_template('dashboard.html')
 
 @bp.route('/edit/<id>')
