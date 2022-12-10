@@ -19,9 +19,14 @@ def index():
         loggedIn=session.get('loggedIn')
 )
 
-@bp.route('login')
+@bp.route('/login')
 def login():
-    return render_template('login.html')
+    # not logged in yet
+    if session.get('loggedIn') is None:
+            return render_template('login.html')
+
+    return render_template('/dashboard')
+    
 # route below uses a parameter within URL
 @bp.route('/post/<id>')
 def single(id):
