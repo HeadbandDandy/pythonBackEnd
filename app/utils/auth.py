@@ -11,4 +11,4 @@ def login_required(func):
 
         return redirect('/login')
   
-        return wrapped_function
+      return wrapped_function

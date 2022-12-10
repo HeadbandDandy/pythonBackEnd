@@ -1,4 +1,3 @@
-from typing_extensions import assert_type
 from app.db import Base
 from sqlalchemy import Column, Integer, String
 # below allows for validation of user data before acceptance
