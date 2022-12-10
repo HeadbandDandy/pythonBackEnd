@@ -1,6 +1,8 @@
 # below contains route that uses the dashboard html tempalte
 
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, session
+from app.models import Post
+from app.db import get_db
 
 bp = Blueprint('dashboard', __name__, url_prefix='/dashboard')
 
