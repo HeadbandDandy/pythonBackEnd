@@ -28,10 +28,11 @@ def signup():
     # insert failed, so send error to front end
     print(sys.exc_info()[0])
     db.rollback()
-    session.clear()
-    session['user_id'] = newUser.id
-    session['loggedIn'] = True
     return jsonify(message = 'Signup failed'), 500
+
+  session.clear()
+  session['user_id'] = newUser.id
+  session['loggedIn'] = True
 
   return jsonify(id = newUser.id)
 
@@ -42,26 +43,30 @@ def logout():
     session.clear()
     return '', 204
 
+# Post route for user logins
+
 @bp.route('/users/login', methods=['POST'])
 def login():
-    data=request.get_json()
-    db = get_db()
+  data = request.get_json()
+  db = get_db()
+  
+  try:
+    user = db.query(User).filter(User.email == data['email']).one()
+  except:
+   print(sys.exc_info()[0])
+ 
+  if user.verify_password(data['password']) == False:
+        return jsonify(message = 'Incorrect credentials'), 400
+      
+  session.clear()
+  session['user_id'] = user.id
+  session['loggedIn'] = True
+
+  return jsonify(id = user.id)
 
 
-    try:
-            user = db.query(User).filter(User.email == data ['email']).one()
-    except:
-         print(sys.exc_info()[0])
-         
-    if user.verify_password(data['password']) == False:
-                  return jsonify(message = 'Incorrect Credntials'), 400
 
-                  # below creates session and sends back response
-    session.clear()
-    session['user_id'] = user.id
-    session['loggedIn'] = True
-    
-    return jsonify(id = user.id)
+
     
 
 # comment Route
@@ -87,6 +92,8 @@ def comment():
         db.rollback()
         
         return jsonify(message = 'Comment Did Not Post!'), 500
+  
+    return jsonify( id = newComment.id)
 
 # Vote PUT route is below
 
