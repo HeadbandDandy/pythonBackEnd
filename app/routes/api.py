@@ -29,13 +29,13 @@ def signup():
     print(sys.exe_info()[0])
 
     db.rollback()
-        # below is where session object is placed
+            # below is where session object is placed
     session.clear()
     session['user_id'] = newUser.id
     session['loggedIn'] = True
+
     return jsonify(message = 'Signup failed'), 500
 
-  return jsonify(id = newUser.id)
 
 @bp.route('/users/logout', methods=['POST'])
 def logout():
