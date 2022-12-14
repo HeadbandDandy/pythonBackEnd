@@ -26,7 +26,7 @@ def signup():
     db.commit()
   except:
     # Returns failed message to user
-    print(sys.exe_info()[0])
+    print(sys.exc_info()[0])
 
     db.rollback()
             # below is where session object is placed
