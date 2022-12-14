@@ -8,33 +8,32 @@ from app.db import get_db
 
 bp = Blueprint('api', __name__, url_prefix='/api')
 
-
+# signup route below
 @bp.route('/users', methods=['POST'])
 def signup():
   data = request.get_json()
   db = get_db()
 
   try:
-    # attempts to create a new User
+    # attempt creating a new user
     newUser = User(
       username = data['username'],
       email = data['email'],
       password = data['password']
     )
-# below adds data to database 
+
     db.add(newUser)
     db.commit()
   except:
-    # Returns failed message to user
+    # insert failed, so send error to front end
     print(sys.exc_info()[0])
-
     db.rollback()
-            # below is where session object is placed
     session.clear()
     session['user_id'] = newUser.id
     session['loggedIn'] = True
-
     return jsonify(message = 'Signup failed'), 500
+
+  return jsonify(id = newUser.id)
 
 
 @bp.route('/users/logout', methods=['POST'])
